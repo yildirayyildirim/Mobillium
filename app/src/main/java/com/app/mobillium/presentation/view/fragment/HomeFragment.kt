@@ -15,6 +15,7 @@ class HomeFragment : BaseFragment<ViewFragmentHomeBinding, HomeViewModel>() {
     override fun getContentView(): Int = R.layout.view_fragment_home
 
     override fun subScribe(view: View) {
+        super.subScribe(view)
         init()
         baseViewModel.resultModel.observe(viewLifecycleOwner, {
             it?.let {

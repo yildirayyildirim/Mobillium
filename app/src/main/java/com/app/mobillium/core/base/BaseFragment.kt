@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.Toast
+import androidx.annotation.CallSuper
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -50,7 +51,6 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel> :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showChangeProgress()
-        subScribe(view)
     }
 
     open fun hideProgressDialog() {
@@ -84,7 +84,10 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel> :
 
     protected abstract fun getContentView(): Int
 
-    protected abstract fun subScribe(view: View)
+    @CallSuper
+    protected open fun subScribe(view: View){
+        showChangeProgress()
+    }
 
     protected abstract fun getViewModel(): Class<V>
 }
